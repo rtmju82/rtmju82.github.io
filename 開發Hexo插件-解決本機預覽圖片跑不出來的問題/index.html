@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="架設好Hexo,也很開心的寫了第一篇文，結果在本機執行預覽的時候發現怎麼圖片全部都跑不出來 雖然說後續上傳到GitHub可能可以解決這樣的問題，但是本機不能看感覺實在很差啊！！   於是就開始尋找解決的方法，本篇文章是參考這篇文章進行實作，將一些過程中我覺得不太清楚的地方再加強描述，覺得我說明得不夠清楚的地方也可以參考原本的文章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="開發Hexo插件-解決本機預覽圖片跑不出來的問題">
+<meta property="og:url" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/">
+<meta property="og:site_name" content="Ray的漫漫碼路">
+<meta property="og:description" content="架設好Hexo,也很開心的寫了第一篇文，結果在本機執行預覽的時候發現怎麼圖片全部都跑不出來 雖然說後續上傳到GitHub可能可以解決這樣的問題，但是本機不能看感覺實在很差啊！！   於是就開始尋找解決的方法，本篇文章是參考這篇文章進行實作，將一些過程中我覺得不太清楚的地方再加強描述，覺得我說明得不夠清楚的地方也可以參考原本的文章">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124153215530.png">
+<meta property="og:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124151409886.png">
+<meta property="og:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124151453816.png">
+<meta property="og:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124151619630.png">
+<meta property="og:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124151713364.png">
+<meta property="og:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124151944567.png">
+<meta property="og:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124154432649.png">
+<meta property="og:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124154505292.png">
+<meta property="og:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124154709879.png">
+<meta property="og:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124154901464.png">
+<meta property="og:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124154908174.png">
+<meta property="og:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124155133382.png">
+<meta property="article:published_time" content="2023-11-24T07:09:13.000Z">
+<meta property="article:modified_time" content="2023-11-27T06:12:31.476Z">
+<meta property="article:author" content="Ray Su">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124153215530.png">
+
+<link rel="canonical" href="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>開發Hexo插件-解決本機預覽圖片跑不出來的問題 | Ray的漫漫碼路</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ray的漫漫碼路</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">問題是路標，解決是旅程</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://example.com/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://lh3.googleusercontent.com/a/ACg8ocJJSOsI6VkA47ftFhURjszfIb5JcavzUadTUnRqH95enpWr=s288-c-no">
+      <meta itemprop="name" content="Ray Su">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ray的漫漫碼路">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          開發Hexo插件-解決本機預覽圖片跑不出來的問題
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2023-11-24 15:09:13" itemprop="dateCreated datePublished" datetime="2023-11-24T15:09:13+08:00">2023-11-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-11-27 14:12:31" itemprop="dateModified" datetime="2023-11-27T14:12:31+08:00">2023-11-27</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p> 架設好Hexo,也很開心的寫了第一篇文，結果在本機執行預覽的時候發現怎麼圖片全部都跑不出來</p>
+<p>雖然說後續上傳到GitHub可能可以解決這樣的問題，但是本機不能看感覺實在很差啊！！</p>
+<img src="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124153215530.png" class="" title="image-20231124153215530">
+
+<p>於是就開始尋找解決的方法，本篇文章是參考這篇文章進行實作，將一些過程中我覺得不太清楚的地方再加強描述，覺得我說明得不夠清楚的地方也可以參考原本的文章</p>
+<span id="more"></span>
+
+
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://moeci.com/posts/hexo-typora/">Hexo + Typora + 开发Hexo插件 解决图片路径不一致</a></p>
+</blockquote>
+<h2 id="1-下載Typora"><a href="#1-下載Typora" class="headerlink" title="1. 下載Typora"></a>1. 下載Typora</h2><p><a target="_blank" rel="noopener" href="https://typora.io/">https://typora.io</a></p>
+<h2 id="2-更改圖片儲存設定"><a href="#2-更改圖片儲存設定" class="headerlink" title="2.更改圖片儲存設定"></a>2.更改圖片儲存設定</h2><img src="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124151409886.png" class="" title="image-20231124151409886">
+
+<p>將這幾個選項勾選起來</p>
+<img src="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124151453816.png" class="" title="image-20231124151453816">
+
+<p>日後寫文章的時候，直接截圖好的圖片貼到Typora即可</p>
+<h2 id="3-更改-config-yml配置"><a href="#3-更改-config-yml配置" class="headerlink" title="3. 更改_config.yml配置"></a>3. 更改_config.yml配置</h2><p>更改根目錄的_config.yml檔案</p>
+<p>將post_asset_folder: <strong>false</strong>改成post_asset_folder: <strong>true</strong></p>
+<img src="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124151619630.png" class="" title="image-20231124151619630">
+
+<img src="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124151713364.png" class="" title="image-20231124151713364">
+
+<p>這樣修改之後，每次我們產生新文章的時候，Hexo就會自動產生一個資料夾來放置文章相關的資源</p>
+<img src="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124151944567.png" class="" title="image-20231124151944567">
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/asset-folders">官方參考文件</a></p>
+</blockquote>
+<h2 id="4-開發-Hexo-轉換圖片路徑插件"><a href="#4-開發-Hexo-轉換圖片路徑插件" class="headerlink" title="4.開發 Hexo 轉換圖片路徑插件"></a>4.開發 Hexo 轉換圖片路徑插件</h2><p>現在我們在Typora使用 <code>![example](postname/example.jpg)</code> 預覽圖片都是正常的，但是發佈到Hexo時，這樣的格式是不支援的，所以就會造成顯示不出圖片的問題，因此我們必須將原本的格式轉成Hexo支援的路徑，才可七正常顯示</p>
+<p><code>![example](postname/example.jpg) --&gt; &#123;% asset_img example.jpg example %&#125;</code></p>
+<p>而這個動作必須在hexo -g之前處理，所以我們就要來新增一個小插件做路徑的轉換</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/asset-folders#%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E5%BC%95%E7%94%A8%E7%9A%84%E6%A0%87%E7%AD%BE%E6%8F%92%E4%BB%B6">官方參考文件</a></p>
+</blockquote>
+<h3 id="4-1在-node-modules下建立hexo-asset-img資料夾"><a href="#4-1在-node-modules下建立hexo-asset-img資料夾" class="headerlink" title="4.1在.\node_modules下建立hexo-asset-img資料夾"></a>4.1在.\node_modules下建立hexo-asset-img資料夾</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir hexo-asset-img</span><br><span class="line">cd hexo-asset-img</span><br><span class="line">npm init</span><br></pre></td></tr></table></figure>
+
+<img src="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124154432649.png" class="" title="image-20231124154432649">
+
+<p>這樣package.json檔案就建立完成</p>
+<img src="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124154505292.png" class="" title="image-20231124154505292">
+
+<h3 id="4-2-建立index-js"><a href="#4-2-建立index-js" class="headerlink" title="4.2 建立index.js"></a>4.2 建立index.js</h3><p>接著在hexo-asset-img中建立<code>index.js</code>這個檔案</p>
+<p>輸入以下程式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//const log = require(&#x27;hexo-log&#x27;)(&#123; &#x27;debug&#x27;: false, &#x27;slient&#x27;: false &#125;);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * md文件返回 true</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; data </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">ignore</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> 好奇怪，试了一下, md返回true, 但却需要忽略 取反!</span></span><br><span class="line">    <span class="keyword">var</span> source = data.<span class="property">source</span>;</span><br><span class="line">    <span class="keyword">var</span> ext = source.<span class="title function_">substring</span>(source.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;.&#x27;</span>)).<span class="title function_">toLowerCase</span>();</span><br><span class="line">    <span class="keyword">return</span> [<span class="string">&#x27;md&#x27;</span>,].<span class="title function_">indexOf</span>(ext) &gt; -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">action</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> reverseSource = data.<span class="property">source</span>.<span class="title function_">split</span>(<span class="string">&quot;&quot;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> fileName = reverseSource.<span class="title function_">substring</span>(<span class="number">3</span>, reverseSource.<span class="title function_">indexOf</span>(<span class="string">&quot;/&quot;</span>)).<span class="title function_">split</span>(<span class="string">&quot;&quot;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ![example](postname/example.jpg)  --&gt;  &#123;% asset_img example.jpg example %&#125;</span></span><br><span class="line">    <span class="keyword">var</span> regExp = <span class="title class_">RegExp</span>(<span class="string">&quot;!\\[(.*?)\\]\\(&quot;</span> + fileName + <span class="string">&#x27;/(.+?)\\)&#x27;</span>, <span class="string">&quot;g&quot;</span>);</span><br><span class="line">    <span class="comment">// hexo g</span></span><br><span class="line">    data.<span class="property">content</span> = data.<span class="property">content</span>.<span class="title function_">replace</span>(regExp, <span class="string">&quot;&#123;% asset_img $2 $1 %&#125;&quot;</span>,<span class="string">&quot;g&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// log.info(`hexo-asset-img: filename: $&#123;fileName&#125;, title: $&#123;data.title.trim()&#125;`);</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">filter</span>.<span class="title function_">register</span>(<span class="string">&#x27;before_post_render&#x27;</span>,<span class="function">(<span class="params">data</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_">ignore</span>(data))&#123;</span><br><span class="line">        <span class="title function_">action</span>(data)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3修改根目錄package-json"><a href="#4-3修改根目錄package-json" class="headerlink" title="4.3修改根目錄package.json"></a>4.3修改根目錄package.json</h3><p>Hexo根目錄下 package.json 中 dependencies新增一行 “hexo-asset-img”: “^1.0.0”</p>
+<img src="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124154709879.png" class="" title="image-20231124154709879">
+
+<h3 id="4-4-重新生成文章"><a href="#4-4-重新生成文章" class="headerlink" title="4.4 重新生成文章"></a>4.4 重新生成文章</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s -p 9453</span><br></pre></td></tr></table></figure>
+
+<img src="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124154901464.png" class="" title="image-20231124154901464">
+
+<img src="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124154908174.png" class="" title="image-20231124154908174">
+
+<p>如果沒有問題的話，執行不會出現錯誤，如果有問題，就根據上面的提示進行修正</p>
+<p>查看html原始碼，可以看到已經轉換成功</p>
+<img src="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/image-20231124155133382.png" class="" title="image-20231124155133382">
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0-Hexo%E7%9A%84%E8%AA%95%E7%94%9F/" rel="prev" title="第一篇文章-Hexo的誕生">
+      <i class="fa fa-chevron-left"></i> 第一篇文章-Hexo的誕生
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/" rel="next" title="SAP角色新增Table存取權限">
+      SAP角色新增Table存取權限 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%8B%E8%BC%89Typora"><span class="nav-number">1.</span> <span class="nav-text">1. 下載Typora</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%9B%B4%E6%94%B9%E5%9C%96%E7%89%87%E5%84%B2%E5%AD%98%E8%A8%AD%E5%AE%9A"><span class="nav-number">2.</span> <span class="nav-text">2.更改圖片儲存設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%9B%B4%E6%94%B9-config-yml%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">3. 更改_config.yml配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%96%8B%E7%99%BC-Hexo-%E8%BD%89%E6%8F%9B%E5%9C%96%E7%89%87%E8%B7%AF%E5%BE%91%E6%8F%92%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">4.開發 Hexo 轉換圖片路徑插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1%E5%9C%A8-node-modules%E4%B8%8B%E5%BB%BA%E7%AB%8Bhexo-asset-img%E8%B3%87%E6%96%99%E5%A4%BE"><span class="nav-number">4.1.</span> <span class="nav-text">4.1在.\node_modules下建立hexo-asset-img資料夾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%BB%BA%E7%AB%8Bindex-js"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 建立index.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3%E4%BF%AE%E6%94%B9%E6%A0%B9%E7%9B%AE%E9%8C%84package-json"><span class="nav-number">4.3.</span> <span class="nav-text">4.3修改根目錄package.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E9%87%8D%E6%96%B0%E7%94%9F%E6%88%90%E6%96%87%E7%AB%A0"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 重新生成文章</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ray Su"
+      src="https://lh3.googleusercontent.com/a/ACg8ocJJSOsI6VkA47ftFhURjszfIb5JcavzUadTUnRqH95enpWr=s288-c-no">
+  <p class="site-author-name" itemprop="name">Ray Su</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray Su</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
