@@ -64,9 +64,10 @@
 <meta property="og:image" content="http://example.com/%E7%82%BAHexo%E6%96%B0%E5%A2%9EGoogle-Analytics%E6%9C%8D%E5%8B%99/image-20231128110058620.png">
 <meta property="og:image" content="http://example.com/%E7%82%BAHexo%E6%96%B0%E5%A2%9EGoogle-Analytics%E6%9C%8D%E5%8B%99/image-20231128110114213.png">
 <meta property="article:published_time" content="2023-11-28T01:34:02.000Z">
-<meta property="article:modified_time" content="2023-11-28T03:03:58.255Z">
+<meta property="article:modified_time" content="2023-11-28T08:35:05.116Z">
 <meta property="article:author" content="Ray Su">
 <meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="GoogleAnalytics">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/%E7%82%BAHexo%E6%96%B0%E5%A2%9EGoogle-Analytics%E6%9C%8D%E5%8B%99/google-analytics.png">
 
@@ -85,6 +86,15 @@
 
   <title>為Hexo新增Google Analytics服務 | Ray的漫漫碼路</title>
   
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NWD4L54TX9"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NWD4L54TX9');
+      }
+    </script>
 
 
 
@@ -161,6 +171,11 @@
     <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
 
   </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
@@ -219,7 +234,16 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2023-11-28 09:34:02 / 修改時間：11:03:58" itemprop="dateCreated datePublished" datetime="2023-11-28T09:34:02+08:00">2023-11-28</time>
+              <time title="創建時間：2023-11-28 09:34:02 / 修改時間：16:35:05" itemprop="dateCreated datePublished" datetime="2023-11-28T09:34:02+08:00">2023-11-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                </span>
             </span>
 
           <br>
@@ -355,6 +379,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/GoogleAnalytics/" rel="tag"># GoogleAnalytics</a>
           </div>
 
         
@@ -445,10 +470,16 @@
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
