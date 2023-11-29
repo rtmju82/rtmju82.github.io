@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NWD4L54TX9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NWD4L54TX9');
+</script>
+  <meta name="description" content="這篇文章簡單的記錄，如何在SAP implement Note">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Implement Note or TCI (SAP)">
+<meta property="og:url" content="http://example.com/Implement-Note-SAP/">
+<meta property="og:site_name" content="Ray的漫漫碼路">
+<meta property="og:description" content="這篇文章簡單的記錄，如何在SAP implement Note">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231128170644015.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129162528729.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129162646874.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129162912953.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/Untitled.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129164608828.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129164540404.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/Untitled4.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/Untitled5.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129164502567.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129164442739.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/Untitled8.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129164359477.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/Untitled10.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/Untitled11.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/Untitled12.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129135139505.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129135222381.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129164331833.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129164312561.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129164250401.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129153609828.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129153704630.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129164228211.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129164207556.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129155236641.png">
+<meta property="og:image" content="http://example.com/Implement-Note-SAP/image-20231129164138447.png">
+<meta property="article:published_time" content="2023-11-28T08:48:42.000Z">
+<meta property="article:modified_time" content="2023-11-29T08:46:22.443Z">
+<meta property="article:author" content="Ray Su">
+<meta property="article:tag" content="SAP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/Implement-Note-SAP/image-20231128170644015.png">
+
+<link rel="canonical" href="http://example.com/Implement-Note-SAP/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-TW'
+  };
+</script>
+
+  <title>Implement Note or TCI (SAP) | Ray的漫漫碼路</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NWD4L54TX9"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-NWD4L54TX9');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ray的漫漫碼路</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">問題是路標，解決是旅程</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Implement-Note-SAP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://lh3.googleusercontent.com/a/ACg8ocJJSOsI6VkA47ftFhURjszfIb5JcavzUadTUnRqH95enpWr=s288-c-no">
+      <meta itemprop="name" content="Ray Su">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ray的漫漫碼路">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Implement Note or TCI (SAP)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2023-11-28 16:48:42" itemprop="dateCreated datePublished" datetime="2023-11-28T16:48:42+08:00">2023-11-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2023-11-29 16:46:22" itemprop="dateModified" datetime="2023-11-29T16:46:22+08:00">2023-11-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SAP/" itemprop="url" rel="index"><span itemprop="name">SAP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/Implement-Note-SAP/image-20231128170644015.png" class="" title="image-20231128170644015">
+
+<p>這篇文章簡單的記錄，如何在SAP implement Note</p>
+<span id="more"></span>
+
+<h1 id="Implement-Note"><a href="#Implement-Note" class="headerlink" title="Implement Note"></a>Implement Note</h1><h2 id="確認Note可否implement"><a href="#確認Note可否implement" class="headerlink" title="確認Note可否implement"></a>確認Note可否implement</h2><p>點選[系統]-&gt;[狀態]</p>
+<img src="/Implement-Note-SAP/image-20231129162528729.png" class="" title="image-20231129162528729">
+
+
+
+<p>SAP系統資料點選紅框的放大鏡，看SAP_BASIS就可以得知版本號</p>
+<img src="/Implement-Note-SAP/image-20231129162646874.png" class="" title="image-20231129162646874">
+
+<p>再去Note的頁面，看系統的版本號有沒有在上面</p>
+<img src="/Implement-Note-SAP/image-20231129162912953.png" class="" title="image-20231129162912953">
+
+<p>如果真的沒辦法確認系統能不能打，其實有一個很簡單的方式，直接到SNOTE下載這個Note，然後看系統的提示就可以知道能不能打了(畢竟最後還是要以系統為主)</p>
+<p>那就讓我們接著繼續做</p>
+<h2 id="進入TCode-SNOTE"><a href="#進入TCode-SNOTE" class="headerlink" title="進入TCode: SNOTE"></a>進入TCode: SNOTE</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SNOTE</span><br></pre></td></tr></table></figure>
+
+<h2 id="下載Note"><a href="#下載Note" class="headerlink" title="下載Note"></a>下載Note</h2><p>點選Download SAP Note，輸入Notes Number</p>
+<img src="/Implement-Note-SAP/Untitled.png" class="" title="Untitled">
+
+<p>或這樣搜尋Note並下載也可以</p>
+<img src="/Implement-Note-SAP/image-20231129164608828.png" class="" title="image-20231129164608828">
+
+<p>下載完之後，Implementation Satae這邊會顯示這個Notes能不能implement 到目前的SAP系統</p>
+<p>下圖Cannot be implemented就是不能夠implemented到SAP</p>
+
+
+<p>選取要打的Note，並做Implement</p>
+<img src="/Implement-Note-SAP/image-20231129164540404.png" class="" title="image-20231129164540404">
+
+<p>新增Request</p>
+<img src="/Implement-Note-SAP/Untitled4.png" class="" title="Untitled4">
+
+<p>大多的步驟都是下一步下一步下一步…有時候SAP會需要確認一些文件，可以進去稍微看一下內容再確定要不要執行</p>
+<img src="/Implement-Note-SAP/Untitled5.png" class="" title="Untitled5">
+
+<img src="/Implement-Note-SAP/image-20231129164502567.png" class="" title="image-20231129164502567">
+
+<img src="/Implement-Note-SAP/image-20231129164442739.png" class="" title="image-20231129164442739">
+
+<p>看到這個訊息就代表完成</p>
+<img src="/Implement-Note-SAP/Untitled8.png" class="" title="Untitled8">
+
+<p>可以看到狀態也改變了<strong>Completly implemented</strong></p>
+<img src="/Implement-Note-SAP/image-20231129164359477.png" class="" title="image-20231129164359477">
+
+<h2 id="補充："><a href="#補充：" class="headerlink" title="補充："></a>補充：</h2><p>有時候打A Note，SAP會要求要連B、C Note 一起打，就一起下載打進去</p>
+<p><strong>(但不代表SAP說要打的，我們的系統就可以打)</strong></p>
+<img src="/Implement-Note-SAP/Untitled10.png" class="" title="Untitled10">
+
+<p>無論能不能打，都只能<strong>同意</strong>，因為<strong>你不同意，SAP就不讓你下一步了</strong></p>
+<img src="/Implement-Note-SAP/Untitled11.png" class="" title="Untitled11">
+
+<p>打完會發現…這兩個SAP建議的Note根本不能Implement</p>
+<img src="/Implement-Note-SAP/Untitled12.png" class="" title="Untitled12">
+
+
+
+<h2 id="手動上傳Note"><a href="#手動上傳Note" class="headerlink" title="手動上傳Note"></a>手動上傳Note</h2><p>如果你的SAP系統沒有透過SM59連線到SAP的Server，那你可以可以透過手動下載及上傳的方式匯入Note</p>
+<img src="/Implement-Note-SAP/image-20231129135139505.png" class="" title="image-20231129135139505">
+
+<p>下載Note</p>
+<img src="/Implement-Note-SAP/image-20231129135222381.png" class="" title="image-20231129135222381">
+
+<p><code>TCode:SNOTE</code></p>
+<p>[Goto]-&gt;[Upload SAP Note]</p>
+<p>選擇剛剛下載下來的SAR檔</p>
+<img src="/Implement-Note-SAP/image-20231129164331833.png" class="" title="image-20231129164331833">
+
+<p>[允許]</p>
+<img src="/Implement-Note-SAP/image-20231129164312561.png" class="" title="image-20231129164312561">
+
+<p>接著再去搜尋就會找到這個Note囉~</p>
+<img src="/Implement-Note-SAP/image-20231129164250401.png" class="" title="image-20231129164250401">
+
+<h1 id="Implement-TCI"><a href="#Implement-TCI" class="headerlink" title="Implement TCI"></a>Implement TCI</h1><h2 id="TCI是什麼？"><a href="#TCI是什麼？" class="headerlink" title="TCI是什麼？"></a>TCI是什麼？</h2><p>以下是SAP Note3007254的說明</p>
+<blockquote>
+<p>TCI Note (i.e., a SAP Note with Transport based Correction Instructions), you can apply it to achieve the described goal. This TCI Note has enabled the rollback feature, i.e., if you wish you can de-implement it after it’s implemented. However, the pre-requisite to de-implement a rollback enabled TCI Note is that the TCI Note <a target="_blank" rel="noopener" href="https://me.sap.com/notes/2408383">2408383</a> was applied before applying the rollback enabled TCI Note.</p>
+</blockquote>
+<p>以下是經過ChatGPT之後的解釋</p>
+<blockquote>
+<p>在 SAP 中，TCI 代表 “Transport-based Correction Instructions”，翻譯成中文為「基於運輸的修正指令」。</p>
+<p>這種 TCI Note 是 SAP 提供的一種修正機制。</p>
+<p>當 SAP 系統中發現某些錯誤或需要進行修正時，SAP 會提供一個 TCI Note，這是一個包含了修正指令的 SAP Note。</p>
+<p>具體來說，TCI 允許你在應用 SAP Note 時使用運輸工具（Transport）進行修正。</p>
+<p>Transport 是 SAP 中用於將變更集成到系統中的機制。這種方式使得你可以在不同的 SAP 系統之間共享和應用這些建議的修正。</p>
+<p>如果你在應用 TCI Note 後發現問題或需要撤銷變更，你可以使用回滾功能。</p>
+<p>然而，要使用這個回滾功能，有一個先決條件，即在應用支援回滾的 TCI Note 之前，必須先應用 TCI Note 2408383。</p>
+<p><strong>簡而言之，TCI 是 SAP 提供的一種應用修正指令的機制，通過運輸工具進行應用，並且支援回滾功能</strong>。</p>
+</blockquote>
+<p>看起來TCI也是一種SAP的修正機制，且與Note不同的是，TCI還支援rollback</p>
+<h2 id="下載TCI"><a href="#下載TCI" class="headerlink" title="下載TCI"></a>下載TCI</h2><p>以 <a target="_blank" rel="noopener" href="https://me.sap.com/notes/3007254">3007254為例</a></p>
+<p>往下拉到Correction Instructions的Section，點進去</p>
+<img src="/Implement-Note-SAP/image-20231129153609828.png" class="" title="image-20231129153609828">
+
+<p>點選[Download]</p>
+<img src="/Implement-Note-SAP/image-20231129153704630.png" class="" title="image-20231129153704630">
+
+<h2 id="Upload-TCI"><a href="#Upload-TCI" class="headerlink" title="Upload TCI"></a>Upload TCI</h2><p><code>TCode:SNOTE</code></p>
+<p>[Goto]-&gt;[Upload TCI]</p>
+<img src="/Implement-Note-SAP/image-20231129164228211.png" class="" title="image-20231129164228211">
+
+<p>上傳剛剛下載的檔案</p>
+<img src="/Implement-Note-SAP/image-20231129164207556.png" class="" title="image-20231129164207556">
+
+<p>點選Decompress</p>
+<img src="/Implement-Note-SAP/image-20231129155236641.png" class="" title="image-20231129155236641">
+
+<p>之後的動作就和Note一樣了，將他implement進去就可以囉~</p>
+<img src="/Implement-Note-SAP/image-20231129164138447.png" class="" title="image-20231129164138447">
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SAP/" rel="tag"># SAP</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E7%82%BAHexo%E6%96%B0%E5%A2%9EGoogle-Analytics%E6%9C%8D%E5%8B%99/" rel="prev" title="為Hexo新增Google Analytics服務">
+      <i class="fa fa-chevron-left"></i> 為Hexo新增Google Analytics服務
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Implement-Note"><span class="nav-number">1.</span> <span class="nav-text">Implement Note</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A2%BA%E8%AA%8DNote%E5%8F%AF%E5%90%A6implement"><span class="nav-number">1.1.</span> <span class="nav-text">確認Note可否implement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%B2%E5%85%A5TCode-SNOTE"><span class="nav-number">1.2.</span> <span class="nav-text">進入TCode: SNOTE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BC%89Note"><span class="nav-number">1.3.</span> <span class="nav-text">下載Note</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A3%9C%E5%85%85%EF%BC%9A"><span class="nav-number">1.4.</span> <span class="nav-text">補充：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8B%95%E4%B8%8A%E5%82%B3Note"><span class="nav-number">1.5.</span> <span class="nav-text">手動上傳Note</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implement-TCI"><span class="nav-number">2.</span> <span class="nav-text">Implement TCI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCI%E6%98%AF%E4%BB%80%E9%BA%BC%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">TCI是什麼？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BC%89TCI"><span class="nav-number">2.2.</span> <span class="nav-text">下載TCI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Upload-TCI"><span class="nav-number">2.3.</span> <span class="nav-text">Upload TCI</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ray Su"
+      src="https://lh3.googleusercontent.com/a/ACg8ocJJSOsI6VkA47ftFhURjszfIb5JcavzUadTUnRqH95enpWr=s288-c-no">
+  <p class="site-author-name" itemprop="name">Ray Su</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ray Su</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="總字數">6k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">6 分鐘</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
