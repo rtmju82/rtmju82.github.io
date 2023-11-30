@@ -38,31 +38,25 @@
     head.appendChild(script);
   }
   </script>
-  <meta name="description" content="Hexo使用Next主題後預設就會將文章和標籤顯示在頁面上，但是實際要使用的時候會發現… 怎麼不能點？？(滑鼠移到標籤的時候並不會出現手指) 原來是還要經過一點小小的設定才可以順利使用標籤，接著就讓我們來設定吧~">
+  <meta name="description" content="前言昨天新增文章的時候反覆在本機端查看文章的顯示效果 無意間切到GA的畫面，然後就發現點閱次數整個衝了上去，雖然次數不高，但當下的心情真的是蠻開心的，原來我的部落格開始會有人來觀看了，網路的力量真強大啊！！ 開心不了多久，我就發現為什麼我沒有發佈的文章也有流量XD?? 思考了一下，是因為我的localhost也同樣有植入GA的追蹤碼以及程式，而且環境同樣有連網，所以雖然是在localhost執">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo新增標籤頁">
-<meta property="og:url" content="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/">
+<meta property="og:title" content="Google Analytics(GA) 排除統計localhost流量">
+<meta property="og:url" content="http://example.com/Google-Analytics-GA-%E6%8E%92%E9%99%A4%E7%B5%B1%E8%A8%88localhost%E6%B5%81%E9%87%8F/">
 <meta property="og:site_name" content="Ray的漫漫碼路">
-<meta property="og:description" content="Hexo使用Next主題後預設就會將文章和標籤顯示在頁面上，但是實際要使用的時候會發現… 怎麼不能點？？(滑鼠移到標籤的時候並不會出現手指) 原來是還要經過一點小小的設定才可以順利使用標籤，接著就讓我們來設定吧~">
+<meta property="og:description" content="前言昨天新增文章的時候反覆在本機端查看文章的顯示效果 無意間切到GA的畫面，然後就發現點閱次數整個衝了上去，雖然次數不高，但當下的心情真的是蠻開心的，原來我的部落格開始會有人來觀看了，網路的力量真強大啊！！ 開心不了多久，我就發現為什麼我沒有發佈的文章也有流量XD?? 思考了一下，是因為我的localhost也同樣有植入GA的追蹤碼以及程式，而且環境同樣有連網，所以雖然是在localhost執">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127164742590.png">
-<meta property="og:image" content="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127143843120.png">
-<meta property="og:image" content="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127143857447.png">
-<meta property="og:image" content="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127150000062.png">
-<meta property="og:image" content="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127150247466.png">
-<meta property="og:image" content="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127150524522.png">
-<meta property="og:image" content="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127150530963.png">
-<meta property="og:image" content="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127145227014.png">
-<meta property="og:image" content="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127145238542.png">
-<meta property="og:image" content="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127164742590.png">
-<meta property="article:published_time" content="2023-11-27T06:38:29.000Z">
-<meta property="article:modified_time" content="2023-11-28T08:36:33.884Z">
+<meta property="og:image" content="http://example.com/Google-Analytics-GA-%E6%8E%92%E9%99%A4%E7%B5%B1%E8%A8%88localhost%E6%B5%81%E9%87%8F/image-20231130105338560.png">
+<meta property="og:image" content="http://example.com/Google-Analytics-GA-%E6%8E%92%E9%99%A4%E7%B5%B1%E8%A8%88localhost%E6%B5%81%E9%87%8F/image-20231130110910310.png">
+<meta property="og:image" content="http://example.com/Google-Analytics-GA-%E6%8E%92%E9%99%A4%E7%B5%B1%E8%A8%88localhost%E6%B5%81%E9%87%8F/image-20231130111537643.png">
+<meta property="article:published_time" content="2023-11-30T02:39:39.000Z">
+<meta property="article:modified_time" content="2023-11-30T03:29:20.742Z">
 <meta property="article:author" content="Ray Su">
 <meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="GoogleAnalytics">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127164742590.png">
+<meta name="twitter:image" content="http://example.com/Google-Analytics-GA-%E6%8E%92%E9%99%A4%E7%B5%B1%E8%A8%88localhost%E6%B5%81%E9%87%8F/image-20231130105338560.png">
 
-<link rel="canonical" href="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/">
+<link rel="canonical" href="http://example.com/Google-Analytics-GA-%E6%8E%92%E9%99%A4%E7%B5%B1%E8%A8%88localhost%E6%B5%81%E9%87%8F/">
 
 
 <script id="page-configurations">
@@ -75,7 +69,7 @@
   };
 </script>
 
-  <title>Hexo新增標籤頁 | Ray的漫漫碼路</title>
+  <title>Google Analytics(GA) 排除統計localhost流量 | Ray的漫漫碼路</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NWD4L54TX9"></script>
     <script>
@@ -201,7 +195,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://example.com/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/Google-Analytics-GA-%E6%8E%92%E9%99%A4%E7%B5%B1%E8%A8%88localhost%E6%B5%81%E9%87%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://lh3.googleusercontent.com/a/ACg8ocJJSOsI6VkA47ftFhURjszfIb5JcavzUadTUnRqH95enpWr=s288-c-no">
@@ -214,7 +208,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hexo新增標籤頁
+          Google Analytics(GA) 排除統計localhost流量
         </h1>
 
         <div class="post-meta">
@@ -223,16 +217,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2023-11-27 14:38:29" itemprop="dateCreated datePublished" datetime="2023-11-27T14:38:29+08:00">2023-11-27</time>
+              <time title="創建時間：2023-11-30 10:39:39 / 修改時間：11:29:20" itemprop="dateCreated datePublished" datetime="2023-11-30T10:39:39+08:00">2023-11-30</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-11-28 16:36:33" itemprop="dateModified" datetime="2023-11-28T16:36:33+08:00">2023-11-28</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -249,7 +237,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">文章字數：</span>
-              <span>460</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -268,48 +256,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img src="/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127164742590.png" class="" title="image-20231127164742590">
+        <img src="/Google-Analytics-GA-%E6%8E%92%E9%99%A4%E7%B5%B1%E8%A8%88localhost%E6%B5%81%E9%87%8F/image-20231130105338560.png" class="" title="image-20231130105338560">
 
-<p>Hexo使用Next主題後預設就會將文章和標籤顯示在頁面上，但是實際要使用的時候會發現…</p>
-<p>怎麼不能點？？(滑鼠移到標籤的時候並不會出現手指)</p>
-<p>原來是還要經過一點小小的設定才可以順利使用標籤，接著就讓我們來設定吧~</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>昨天新增文章的時候反覆在本機端查看文章的顯示效果</p>
+<p>無意間切到GA的畫面，然後就發現點閱次數整個衝了上去，雖然次數不高，但當下的心情真的是蠻開心的，原來我的部落格開始會有人來觀看了，網路的力量真強大啊！！</p>
+<p>開心不了多久，我就發現為什麼我沒有發佈的文章也有流量XD??</p>
+<p>思考了一下，是因為我的localhost也同樣有植入GA的追蹤碼以及程式，而且環境同樣有連網，所以雖然是在localhost執行，但還是會被GA納入追蹤。</p>
+<p>在這篇文章開始之前，如果你先前還沒有在Hexo中設定GA的話，可以先去參考這篇文章做設定哦~</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://rtmju82.github.io/%E7%82%BAHexo%E6%96%B0%E5%A2%9EGoogle-Analytics%E6%9C%8D%E5%8B%99/">為Hexo新增Google Analytics服務</a></p>
+</blockquote>
 <span id="more"></span>
 
-<img src="/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127143843120.png" class="" title="image-20231127143843120"><img src="/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127143857447.png" class="" title="image-20231127143857447">
+<h2 id="排除localhost"><a href="#排除localhost" class="headerlink" title="排除localhost"></a>排除localhost</h2><p>知道問題是出在這段程式碼的話，那我們就著手從程式碼著手就可以囉~</p>
+<img src="/Google-Analytics-GA-%E6%8E%92%E9%99%A4%E7%B5%B1%E8%A8%88localhost%E6%B5%81%E9%87%8F/image-20231130110910310.png" class="" title="image-20231130110910310">
 
+<p><font color='gray'><em>(迷之音：原本叫ChatGPT幫我改，結果依然會追蹤到，還好有爬到網路的其他文章才得以解決)</em></font></p>
+<p>讓我們再度回到<code>.\themes\next\layout\_partials\head\</code>找到<code>head.swig</code>這個檔案</p>
+<p>將原本的程式碼刪除或者註解，改貼上這一段程式即可~</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; <span class="title function_">next_config</span>() &#125;&#125;</span><br><span class="line">&lt;!-- <span class="title class_">Google</span> tag (gtag.<span class="property">js</span>) --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">var</span> host = <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">hostname</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">const</span> pattern = <span class="regexp">/localhost.*/</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">let</span> pattern_re = <span class="keyword">new</span> <span class="title class_">RegExp</span>(pattern)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">if</span>(!pattern_re.<span class="title function_">test</span>(host))</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">let</span> head = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;head&#x27;</span>)[<span class="number">0</span>];</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">let</span> script = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    script.<span class="property">src</span>= <span class="string">&quot;https://www.googletagmanager.com/gtag/js?id=你的追蹤ID&quot;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    script.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="variable language_">window</span>.<span class="property">dataLayer</span> = <span class="variable language_">window</span>.<span class="property">dataLayer</span> || [];</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="keyword">function</span> <span class="title function_">gtag</span>(<span class="params"></span>)&#123;dataLayer.<span class="title function_">push</span>(<span class="variable language_">arguments</span>);&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="title function_">gtag</span>(<span class="string">&#x27;js&#x27;</span>, <span class="keyword">new</span> <span class="title class_">Date</span>());</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">          <span class="title function_">gtag</span>(<span class="string">&#x27;config&#x27;</span>, <span class="string">&#x27;你的追蹤ID&#x27;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    head.<span class="title function_">appendChild</span>(script);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
+<img src="/Google-Analytics-GA-%E6%8E%92%E9%99%A4%E7%B5%B1%E8%A8%88localhost%E6%B5%81%E9%87%8F/image-20231130111537643.png" class="" title="image-20231130111537643">
 
-<!--more-->
-
+<h2 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h2><ol>
+<li>這時候可以用localhost瀏覽幾篇文章跟頁面，再去GA上面確認是不是沒有流量進來</li>
+<li>如果沒有就可以佈署到Github上，然後再測試看看Github上面的網頁是不是會正常被GA追蹤</li>
+</ol>
+<p><strong>畢竟如果改完之後，Github上面的網站追蹤也失效，就本末倒置了嘛XD</strong></p>
 <blockquote>
-<h3 id="建立文章標籤頁面"><a href="#建立文章標籤頁面" class="headerlink" title="建立文章標籤頁面"></a>建立文章標籤頁面</h3></blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立標籤頁</span></span><br><span class="line">hexo new page tags</span><br><span class="line"><span class="comment"># 建立分類頁</span></span><br><span class="line">hexo new page categories</span><br></pre></td></tr></table></figure>
-
-<p>這邊我目前只有下<code>hexo new page tags</code>的指令</p>
-<p>執行完後就會看到source&#x2F;底下多了一個tags的資料夾</p>
-<img src="/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127150000062.png" class="" title="image-20231127150000062">
-
-<p>我們要到裡面去編輯index.md這個檔案，加上</p>
-<p><code>type: tags</code></p>
-<img src="/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127150247466.png" class="" title="image-20231127150247466">
-
-<p>這邊做完之後就可以再重新產生靜態網頁並且Run服務，就會發現標籤頁可以點選囉~</p>
-<img src="/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127150524522.png" class="" title="image-20231127150524522"><img src="/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127150530963.png" class="" title="image-20231127150530963">
-
-
-
-<blockquote>
-<h3 id="利用主選單新增標籤頁面"><a href="#利用主選單新增標籤頁面" class="headerlink" title="利用主選單新增標籤頁面"></a>利用主選單新增標籤頁面</h3></blockquote>
-<p>原本的標籤連結已經可以點選了，但是如果想要將標籤這個項目獨立出來的話，可以按照下面的方式修改</p>
-<p>這邊以Next主題為例，所以我們要到<code> ./themes/next/_config.yml</code>去更改設定，可以看到原本Tags是被註解起來的</p>
-<img src="/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127145227014.png" class="" title="image-20231127145227014">
-
-<p>我們將#移除，接著重新部署並Run服務，就完成囉~</p>
-<p><code>hexo g</code></p>
-<p> <code>hexo s -p 9453</code></p>
-<img src="/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127145238542.png" class="" title="image-20231127145238542">
-
-<img src="/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/image-20231127164742590.png" class="" title="image-20231127164742590">
+<p>參考文章：<a target="_blank" rel="noopener" href="https://vlieo.com/post/google-analytics-excludes-localhost-access/">https://vlieo.com/post/google-analytics-excludes-localhost-access/</a></p>
+</blockquote>
 
     </div>
 
@@ -320,6 +296,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/GoogleAnalytics/" rel="tag"># GoogleAnalytics</a>
           </div>
 
         
@@ -328,13 +305,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/" rel="prev" title="SAP角色新增Table存取權限">
-      <i class="fa fa-chevron-left"></i> SAP角色新增Table存取權限
+    <a href="/Implement-Note-SAP/" rel="prev" title="Implement Note or TCI (SAP)">
+      <i class="fa fa-chevron-left"></i> Implement Note or TCI (SAP)
     </a></div>
-      <div class="post-nav-item">
-    <a href="/%E7%82%BAHexo%E6%96%B0%E5%A2%9EGoogle-Analytics%E6%9C%8D%E5%8B%99/" rel="next" title="為Hexo新增Google Analytics服務">
-      為Hexo新增Google Analytics服務 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -393,7 +367,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E6%96%87%E7%AB%A0%E6%A8%99%E7%B1%A4%E9%A0%81%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">建立文章標籤頁面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E4%B8%BB%E9%81%B8%E5%96%AE%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">利用主選單新增標籤頁面</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E9%99%A4localhost"><span class="nav-number">2.</span> <span class="nav-text">排除localhost</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%AC%E8%A9%A6"><span class="nav-number">3.</span> <span class="nav-text">測試</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
