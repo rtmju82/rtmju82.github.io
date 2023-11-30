@@ -53,9 +53,16 @@
 <meta property="og:image" content="https://rtmju82.github.io/Google-Search-Console/image-20231130165509821.png">
 <meta property="og:image" content="https://rtmju82.github.io/Google-Search-Console/image-20231130173033111.png">
 <meta property="og:image" content="https://rtmju82.github.io/Google-Search-Console/image-20231130173048283.png">
-<meta property="og:image" content="https://rtmju82.github.io/Google-Search-Console/image-20231130173056061.png">
+<meta property="og:image" content="https://rtmju82.github.io/Google-Search-Console/image-20231130223019047.png">
+<meta property="og:image" content="https://rtmju82.github.io/Google-Search-Console/image-20231130223159938.png">
+<meta property="og:image" content="https://rtmju82.github.io/Google-Search-Console/image-20231130222207543.png">
+<meta property="og:image" content="https://rtmju82.github.io/Google-Search-Console/image-20231130222755485.png">
+<meta property="og:image" content="https://rtmju82.github.io/Google-Search-Console/image-20231130223657275.png">
+<meta property="og:image" content="https://rtmju82.github.io/Google-Search-Console/image-20231130223927807.png">
+<meta property="og:image" content="https://rtmju82.github.io/Google-Search-Console/image-20231130223953379.png">
+<meta property="og:image" content="https://rtmju82.github.io/Google-Search-Console/image-20231130224712934.png">
 <meta property="article:published_time" content="2023-11-30T07:14:18.000Z">
-<meta property="article:modified_time" content="2023-11-30T09:36:09.076Z">
+<meta property="article:modified_time" content="2023-11-30T14:47:51.482Z">
 <meta property="article:author" content="Ray Su">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Google">
@@ -225,7 +232,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2023-11-30 15:14:18 / 修改時間：17:36:09" itemprop="dateCreated datePublished" datetime="2023-11-30T15:14:18+08:00">2023-11-30</time>
+              <time title="創建時間：2023-11-30 15:14:18 / 修改時間：22:47:51" itemprop="dateCreated datePublished" datetime="2023-11-30T15:14:18+08:00">2023-11-30</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,7 +250,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">文章字數：</span>
-              <span>932</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -306,9 +313,40 @@
 
 <img src="/Google-Search-Console/image-20231130173048283.png" class="" title="image-20231130173048283">
 
-<img src="/Google-Search-Console/image-20231130173056061.png" class="" title="image-20231130173056061">
+<img src="/Google-Search-Console/image-20231130223019047.png" class="" title="image-20231130223019047">
 
-<p>完成之後Google 的爬蟲就會定期去看 <code>sitemap.xml</code> 檔案是否有更新，這樣你就會在Google的爬蟲清單囉！</p>
+<p>理論上應該這樣就成功了，但是仔細看，上面的狀態顯示有<font color="red">17個錯誤</font></p>
+<p>點進去裡面看錯誤訊息，發現網址都是example.com，這就奇怪了，難道我的sitemap.xml檔真的是example.com嗎？</p>
+<img src="/Google-Search-Console/image-20231130223159938.png" class="" title="image-20231130223159938">
+
+<p>到<a href="https://rtmju82.github.io/sitemap.xml%E5%AF%A6%E9%9A%9B%E6%9F%A5%E7%9C%8B%EF%BC%8C%E9%82%84%E7%9C%9F%E7%9A%84%E5%85%A8%E9%83%A8%E9%83%BD%E6%98%AFexample.com%EF%BC%8C%E4%B9%9F%E9%9B%A3%E6%80%AAGSC%E6%9C%83%E8%AA%AA%E9%8C%AF%E8%AA%A4%E4%BA%86">https://rtmju82.github.io/sitemap.xml實際查看，還真的全部都是example.com，也難怪GSC會說錯誤了</a></p>
+<img src="/Google-Search-Console/image-20231130222207543.png" class="" title="image-20231130222207543">
+
+<p>稍微上網找了一下，發現沒有人遇到跟我一樣的狀況，我就思考，一定是有什麼地方告訴了他網址是example.com</p>
+<p>說到設定第一個就要想到根目錄的<code>_config.yml</code>檔，打開後搜尋example，果然被我找到了，原來是一開始這邊沒有設定，而套件就是抓這個地方的設定。</p>
+<img src="/Google-Search-Console/image-20231130222755485.png" class="" title="image-20231130222755485">
+
+<p>將內容修改</p>
+<p><code>url: https://rtmju82.github.io/</code></p>
+<p>最後，都打開了<code>_config.yml</code>就順便在最下面加入這行指令吧！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sitemap:</span><br><span class="line">    path: sitemap.xml</span><br></pre></td></tr></table></figure>
+
+<img src="/Google-Search-Console/image-20231130223657275.png" class="" title="image-20231130223657275">
+
+<p>加入這行指令的差異在於，原本我們下<code>hexo g</code>時，套件會幫我們產生sitemap.xml及sitemap.txt</p>
+<p>但其實sitemap.txt我們並用不到，加入這行之後，套件就會自動將txt刪除，只留下xml檔</p>
+<img src="/Google-Search-Console/image-20231130223927807.png" class="" title="image-20231130223927807">
+
+<img src="/Google-Search-Console/image-20231130223953379.png" class="" title="image-20231130223953379">
+
+
+
+<p>以上步驟都完成，再重新部署一次來看看結果吧！</p>
+<p>皇天不負苦心人，這次總算是成功了XD</p>
+<img src="/Google-Search-Console/image-20231130224712934.png" class="" title="image-20231130224712934">
+
+
+
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><blockquote>
 <p>是Ray不是Array - <a target="_blank" rel="noopener" href="https://israynotarray.com/hexo/20201007/3723180073/">(24) 試著學 Hexo - SEO 篇 - Google Search Console</a></p>
 </blockquote>
