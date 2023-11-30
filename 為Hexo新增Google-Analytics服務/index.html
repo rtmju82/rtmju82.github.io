@@ -20,14 +20,24 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NWD4L54TX9"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-NWD4L54TX9');
-</script>
+  var host = window.location.hostname;
+  const pattern = /localhost.*/;
+  let pattern_re = new RegExp(pattern)
+  if(!pattern_re.test(host))
+  {
+    let head = document.getElementsByTagName('head')[0];
+    let script = document.createElement('script');
+    script.src= "https://www.googletagmanager.com/gtag/js?id=G-NWD4L54TX9";
+    script.onload = function(){
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-NWD4L54TX9');
+    };
+    head.appendChild(script);
+  }
+  </script>
   <meta name="description" content="將部落格放上github之後，雖然知道剛上架的部落格一定沒什麼人看(這麼消極XD?) 但是還是會好奇到底有多少人來瀏覽(迷之音：就沒有啊) 所以這次的主題是要幫我們自架的Hexo新增Googla Analytics服務(以下簡稱GA)，來分析相關的流量來源 我想這個服務應該是越早架越好，才有辦法去完整分析這個部落格從無到有的流量 廢話不多說，那我們就開始吧~！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="為Hexo新增Google Analytics服務">
@@ -86,15 +96,6 @@
 
   <title>為Hexo新增Google Analytics服務 | Ray的漫漫碼路</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NWD4L54TX9"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-NWD4L54TX9');
-      }
-    </script>
 
 
 
