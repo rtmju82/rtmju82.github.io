@@ -38,23 +38,37 @@
     head.appendChild(script);
   }
   </script>
-  <meta name="description" content="有時候我們將客製的TCode加掛到角色之後，卻出現沒有權限維護某個Table的錯誤訊息 這代表這個客製的程式會存取到客製的Table，但是角色並沒有給予相應的權限 所以我們要手動在權限物件上新增Table的名稱">
+  <meta name="description" content="前言公司最近要上線一個新的網站，由於EC2的預設網址非常不直觀，所以要為這個網站註冊一個專屬的網域，這邊就將過程做一個簡單的記錄~">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SAP角色新增Table存取權限">
-<meta property="og:url" content="https://rtmju82.github.io/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/">
+<meta property="og:title" content="在AWS上註冊Domain並和網站關聯">
+<meta property="og:url" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/">
 <meta property="og:site_name" content="Ray的漫漫碼路">
-<meta property="og:description" content="有時候我們將客製的TCode加掛到角色之後，卻出現沒有權限維護某個Table的錯誤訊息 這代表這個客製的程式會存取到客製的Table，但是角色並沒有給予相應的權限 所以我們要手動在權限物件上新增Table的名稱">
+<meta property="og:description" content="前言公司最近要上線一個新的網站，由於EC2的預設網址非常不直觀，所以要為這個網站註冊一個專屬的網域，這邊就將過程做一個簡單的記錄~">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://rtmju82.github.io/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/security-protection-anti-virus-software-60504.jpegcs=srgb&dl=pexels-pixabay-60504.jpeg">
-<meta property="og:image" content="https://rtmju82.github.io/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/image-20231127142448420.png">
-<meta property="article:published_time" content="2023-11-27T06:16:27.000Z">
-<meta property="article:modified_time" content="2023-11-28T08:36:23.178Z">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/02ILPZ8thAmLeHG3S.jpg">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218140935225.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218140951078.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218141000057.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218141105635.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218141111717.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218141119371.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218141146780.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218141205367.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218142110747.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218142545085.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218142641881.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218142716502.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218142902503.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218142958235.png">
+<meta property="og:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218143013086.png">
+<meta property="article:published_time" content="2023-12-18T06:03:26.000Z">
+<meta property="article:modified_time" content="2023-12-18T06:54:27.675Z">
 <meta property="article:author" content="Ray Su">
-<meta property="article:tag" content="SAP">
+<meta property="article:tag" content="AWS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://rtmju82.github.io/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/security-protection-anti-virus-software-60504.jpegcs=srgb&dl=pexels-pixabay-60504.jpeg">
+<meta name="twitter:image" content="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/02ILPZ8thAmLeHG3S.jpg">
 
-<link rel="canonical" href="https://rtmju82.github.io/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/">
+<link rel="canonical" href="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/">
 
 
 <script id="page-configurations">
@@ -67,7 +81,7 @@
   };
 </script>
 
-  <title>SAP角色新增Table存取權限 | Ray的漫漫碼路</title>
+  <title>在AWS上註冊Domain並和網站關聯 | Ray的漫漫碼路</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NWD4L54TX9"></script>
     <script>
@@ -193,7 +207,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://rtmju82.github.io/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/">
+    <link itemprop="mainEntityOfPage" href="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://lh3.googleusercontent.com/a/ACg8ocJJSOsI6VkA47ftFhURjszfIb5JcavzUadTUnRqH95enpWr=s288-c-no">
@@ -206,7 +220,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          SAP角色新增Table存取權限
+          在AWS上註冊Domain並和網站關聯
         </h1>
 
         <div class="post-meta">
@@ -215,24 +229,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2023-11-27 14:16:27" itemprop="dateCreated datePublished" datetime="2023-11-27T14:16:27+08:00">2023-11-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-11-28 16:36:23" itemprop="dateModified" datetime="2023-11-28T16:36:23+08:00">2023-11-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SAP/" itemprop="url" rel="index"><span itemprop="name">SAP</span></a>
-                </span>
+              <time title="創建時間：2023-12-18 14:03:26 / 修改時間：14:54:27" itemprop="dateCreated datePublished" datetime="2023-12-18T14:03:26+08:00">2023-12-18</time>
             </span>
 
           <br>
@@ -241,7 +240,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">文章字數：</span>
-              <span>128</span>
+              <span>621</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -260,19 +259,64 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img src="/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/security-protection-anti-virus-software-60504.jpegcs=srgb&dl=pexels-pixabay-60504.jpeg" class="" title="Security Photos, Download The BEST Free Security Stock Photos &amp; HD Images">
+        <img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/02ILPZ8thAmLeHG3S.jpg" class="" title="A Walkthrough Of AWS ROUTE 53. As we all know amazon web services… | by Ankit kumar | AWS Tip">
 
-<p>有時候我們將客製的TCode加掛到角色之後，卻出現沒有權限維護某個Table的錯誤訊息</p>
-<p>這代表這個客製的程式會存取到客製的Table，但是角色並沒有給予相應的權限</p>
-<p>所以我們要手動在權限物件上新增Table的名稱</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>公司最近要上線一個新的網站，由於EC2的預設網址非常不直觀，所以要為這個網站註冊一個專屬的網域，這邊就將過程做一個簡單的記錄~</p>
 <span id="more"></span>
 
-<p>權限物件：</p>
-<p><code>S_TABU_NAM</code></p>
+<h1 id="註冊網域"><a href="#註冊網域" class="headerlink" title="註冊網域"></a>註冊網域</h1><p>首先我們要到Route53，直接搜尋即可</p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218140935225.png" class="" title="image-20231218140935225">
 
+<p>到Route53儀表板，在網域註冊的地方點註冊</p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218140951078.png" class="" title="image-20231218140951078">
 
-<p>給予相對應的權限即可</p>
-<img src="/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/image-20231127142448420.png" class="" title="image-20231127142448420">
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218141000057.png" class="" title="image-20231218141000057">
+
+<p>輸入自己想要取的網域名，如果完全符合會出現完全相符的圖示</p>
+<p>如果不符的話，AWS也會推薦一些相近的網域名稱供使用者挑選</p>
+<p>價格也是明碼標示</p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218141105635.png" class="" title="image-20231218141105635">
+
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218141111717.png" class="" title="image-20231218141111717">
+
+<p>這邊看有沒有自動續約的需求，如果有需要可以勾起來</p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218141119371.png" class="" title="image-20231218141119371">
+
+<p>輸入聯絡人資訊</p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218141146780.png" class="" title="image-20231218141146780">
+
+<p>稍微讓AWS處理一下之後，就註冊完成囉 </p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218141205367.png" class="" title="image-20231218141205367">
+
+<p>去查看信件，這邊也有提示我們要做進一步的動作，也就是和我們的網站作託管，那我們就繼續吧~</p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218142110747.png" class="" title="image-20231218142110747">
+
+<h1 id="設定-DNS-記錄"><a href="#設定-DNS-記錄" class="headerlink" title="設定 DNS 記錄"></a>設定 DNS 記錄</h1><p>一樣回到Route53儀表板，這次我們要點的是DNS管理的「託管區域」</p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218142545085.png" class="" title="image-20231218142545085">
+
+<p>點選我們租用的網域</p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218142641881.png" class="" title="image-20231218142641881">
+
+<p>點選「建立紀錄」</p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218142716502.png" class="" title="image-20231218142716502">
+
+<p>這時候回到EC2租用的主機，複製公開的IP名稱</p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218142902503.png" class="" title="image-20231218142902503">
+
+<p><strong>紀錄名稱</strong>：看網址要不要打前綴詞，像是hello.ray-code.com等等…</p>
+<p><strong>紀錄類型</strong>：這邊選擇「A 紀錄」這個記錄將你的網域名稱指向你的 IP 地址。這樣，當有人訪問你的網域時，DNS 將將其解析為你的 IP 地址，使流量能夠正確到達你的伺服器。</p>
+<p><strong>值</strong>：填入IP</p>
+<p>最後點選建立紀錄</p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218142958235.png" class="" title="image-20231218142958235">
+
+<p>設定完成!!</p>
+<p>這時候就可以打上這個網域，看有沒有成功轉跳到你要的網站囉~</p>
+<img src="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/image-20231218143013086.png" class="" title="image-20231218143013086">
+
+<blockquote>
+<p>參考網址：</p>
+<p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_tw/Route53/latest/DeveloperGuide/welcome-domain-registration.html">https://docs.aws.amazon.com/zh_tw/Route53/latest/DeveloperGuide/welcome-domain-registration.html</a></p>
+</blockquote>
 
     </div>
 
@@ -282,7 +326,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/SAP/" rel="tag"># SAP</a>
+              <a href="/tags/AWS/" rel="tag"># AWS</a>
           </div>
 
         
@@ -291,13 +335,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/" rel="prev" title="開發Hexo插件-解決本機預覽圖片跑不出來的問題">
-      <i class="fa fa-chevron-left"></i> 開發Hexo插件-解決本機預覽圖片跑不出來的問題
+    <a href="/Google-Search-Console/" rel="prev" title="將Hexo加入Google Search Console">
+      <i class="fa fa-chevron-left"></i> 將Hexo加入Google Search Console
     </a></div>
-      <div class="post-nav-item">
-    <a href="/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/" rel="next" title="Hexo新增標籤頁">
-      Hexo新增標籤頁 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -356,6 +397,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A8%BB%E5%86%8A%E7%B6%B2%E5%9F%9F"><span class="nav-number">2.</span> <span class="nav-text">註冊網域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A8%AD%E5%AE%9A-DNS-%E8%A8%98%E9%8C%84"><span class="nav-number">3.</span> <span class="nav-text">設定 DNS 記錄</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

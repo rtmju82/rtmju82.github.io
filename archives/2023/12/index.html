@@ -38,23 +38,15 @@
     head.appendChild(script);
   }
   </script>
-  <meta name="description" content="有時候我們將客製的TCode加掛到角色之後，卻出現沒有權限維護某個Table的錯誤訊息 這代表這個客製的程式會存取到客製的Table，但是角色並沒有給予相應的權限 所以我們要手動在權限物件上新增Table的名稱">
-<meta property="og:type" content="article">
-<meta property="og:title" content="SAP角色新增Table存取權限">
-<meta property="og:url" content="https://rtmju82.github.io/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Ray的漫漫碼路">
+<meta property="og:url" content="https://rtmju82.github.io/archives/2023/12/">
 <meta property="og:site_name" content="Ray的漫漫碼路">
-<meta property="og:description" content="有時候我們將客製的TCode加掛到角色之後，卻出現沒有權限維護某個Table的錯誤訊息 這代表這個客製的程式會存取到客製的Table，但是角色並沒有給予相應的權限 所以我們要手動在權限物件上新增Table的名稱">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://rtmju82.github.io/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/security-protection-anti-virus-software-60504.jpegcs=srgb&dl=pexels-pixabay-60504.jpeg">
-<meta property="og:image" content="https://rtmju82.github.io/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/image-20231127142448420.png">
-<meta property="article:published_time" content="2023-11-27T06:16:27.000Z">
-<meta property="article:modified_time" content="2023-11-28T08:36:23.178Z">
 <meta property="article:author" content="Ray Su">
-<meta property="article:tag" content="SAP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://rtmju82.github.io/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/security-protection-anti-virus-software-60504.jpegcs=srgb&dl=pexels-pixabay-60504.jpeg">
 
-<link rel="canonical" href="https://rtmju82.github.io/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/">
+<link rel="canonical" href="https://rtmju82.github.io/archives/2023/12/">
 
 
 <script id="page-configurations">
@@ -62,12 +54,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>SAP角色新增Table存取權限 | Ray的漫漫碼路</title>
+  <title>歸檔 | Ray的漫漫碼路</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NWD4L54TX9"></script>
     <script>
@@ -186,124 +178,50 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content archive">
             
 
-    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="https://rtmju82.github.io/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://lh3.googleusercontent.com/a/ACg8ocJJSOsI6VkA47ftFhURjszfIb5JcavzUadTUnRqH95enpWr=s288-c-no">
-      <meta itemprop="name" content="Ray Su">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ray的漫漫碼路">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          SAP角色新增Table存取權限
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2023-11-27 14:16:27" itemprop="dateCreated datePublished" datetime="2023-11-27T14:16:27+08:00">2023-11-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2023-11-28 16:36:23" itemprop="dateModified" datetime="2023-11-28T16:36:23+08:00">2023-11-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分類於</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SAP/" itemprop="url" rel="index"><span itemprop="name">SAP</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">文章字數：</span>
-              <span>128</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
-              <span>1 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <span class="collection-header">嗯..! 目前共有 9 篇文章。 繼續努力。</span>
+      </div>
 
       
-        <img src="/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/security-protection-anti-virus-software-60504.jpegcs=srgb&dl=pexels-pixabay-60504.jpeg" class="" title="Security Photos, Download The BEST Free Security Stock Photos &amp; HD Images">
-
-<p>有時候我們將客製的TCode加掛到角色之後，卻出現沒有權限維護某個Table的錯誤訊息</p>
-<p>這代表這個客製的程式會存取到客製的Table，但是角色並沒有給予相應的權限</p>
-<p>所以我們要手動在權限物件上新增Table的名稱</p>
-<span id="more"></span>
-
-<p>權限物件：</p>
-<p><code>S_TABU_NAM</code></p>
-
-
-<p>給予相對應的權限即可</p>
-<img src="/SAP%E8%A7%92%E8%89%B2%E6%96%B0%E5%A2%9ETable%E5%AD%98%E5%8F%96%E6%AC%8A%E9%99%90/image-20231127142448420.png" class="" title="image-20231127142448420">
-
+    <div class="collection-year">
+      <span class="collection-header">2023</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/SAP/" rel="tag"># SAP</a>
-          </div>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2023-12-18T14:03:26+08:00"
+              content="2023-12-18">
+          12-18
+        </time>
+      </div>
 
-        
+      <div class="post-title">
+          <a class="post-title-link" href="/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/" itemprop="url">
+            <span itemprop="name">在AWS上註冊Domain並和網站關聯</span>
+          </a>
+      </div>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/%E9%96%8B%E7%99%BCHexo%E6%8F%92%E4%BB%B6-%E8%A7%A3%E6%B1%BA%E6%9C%AC%E6%A9%9F%E9%A0%90%E8%A6%BD%E5%9C%96%E7%89%87%E8%B7%91%E4%B8%8D%E5%87%BA%E4%BE%86%E7%9A%84%E5%95%8F%E9%A1%8C/" rel="prev" title="開發Hexo插件-解決本機預覽圖片跑不出來的問題">
-      <i class="fa fa-chevron-left"></i> 開發Hexo插件-解決本機預覽圖片跑不出來的問題
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/Hexo%E6%96%B0%E5%A2%9E%E6%A8%99%E7%B1%A4%E9%A0%81/" rel="next" title="Hexo新增標籤頁">
-      Hexo新增標籤頁 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+
+    </div>
+  </div>
   
   
+  
+
   
 
 
