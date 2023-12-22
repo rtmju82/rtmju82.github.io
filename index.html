@@ -184,6 +184,93 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://lh3.googleusercontent.com/a/ACg8ocJJSOsI6VkA47ftFhURjszfIb5JcavzUadTUnRqH95enpWr=s288-c-no">
+      <meta itemprop="name" content="Ray Su">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ray的漫漫碼路">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/" class="post-title-link" itemprop="url">AWS EC2與CloudFront：申請網域及SSL設定</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2023-12-22 14:49:52 / 修改時間：17:12:18" itemprop="dateCreated datePublished" datetime="2023-12-22T14:49:52+08:00">2023-12-22</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>3 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>公司最近要上線一個新的網站，本文會記錄相關的設置如下：</p>
+<ol>
+<li>由於EC2的預設網址非常不直觀，所以要用ACM為這個網站註冊一個專屬的網域</li>
+<li>使用Route53為這個網域申請憑證</li>
+<li>使用CloudFront綁定憑證，讓網站變成https</li>
+<li>最後使用Route53設定DNS</li>
+</ol>
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled.png" class="" title="Untitled">
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/" rel="contents">
+                閱讀全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
     <link itemprop="mainEntityOfPage" href="https://rtmju82.github.io/%E5%9C%A8AWS%E4%B8%8A%E8%A8%BB%E5%86%8ADomain/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1119,7 +1206,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -1132,7 +1219,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -1168,12 +1255,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="總字數">10k</span>
+    <span title="總字數">13k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="所需總閱讀時間">9 分鐘</span>
+    <span title="所需總閱讀時間">12 分鐘</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 強力驅動
   </div>
