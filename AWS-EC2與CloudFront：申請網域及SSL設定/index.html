@@ -46,9 +46,57 @@
 <meta property="og:description" content="前言公司最近要上線一個新的網站，本文會記錄相關的設置如下：  由於EC2的預設網址非常不直觀，所以要用ACM為這個網站註冊一個專屬的網域 使用Route53為這個網域申請憑證 使用CloudFront綁定憑證，讓網站變成https 最後使用Route53設定DNS">
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled1.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled2.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled3.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled4.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled5.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled6.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled7.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled8.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled9.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled10.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled11.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled12.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled13.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled14.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled15.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled16.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled17.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled18.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled19.png">
 <meta property="og:image" content="https://rtmju82.github.io/AWS%20%E7%B6%B2%E5%9F%9F%E3%80%81https%E8%A8%AD%E5%AE%9A%200e077a9ac5334d748803da517045ef27/Untitled%2020.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled21.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled22.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled23.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled24.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled25.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled26.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled27.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled28.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled29.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled30.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled31.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled32.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled33.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled34.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled35.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled36.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled37.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled38.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled39.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled40.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled41.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled42.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled43.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled44.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled45.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled46.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled47.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled48.png">
+<meta property="og:image" content="https://rtmju82.github.io/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled49.png">
 <meta property="article:published_time" content="2023-12-22T06:49:52.000Z">
-<meta property="article:modified_time" content="2023-12-22T09:12:18.118Z">
+<meta property="article:modified_time" content="2024-01-11T05:39:34.781Z">
 <meta property="article:author" content="Ray Su">
 <meta property="article:tag" content="AWS">
 <meta property="article:tag" content="EC2">
@@ -219,10 +267,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2023-12-22 14:49:52 / 修改時間：17:12:18" itemprop="dateCreated datePublished" datetime="2023-12-22T14:49:52+08:00">2023-12-22</time>
+              <time title="創建時間：2023-12-22 14:49:52" itemprop="dateCreated datePublished" datetime="2023-12-22T14:49:52+08:00">2023-12-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2024-01-11 13:39:34" itemprop="dateModified" datetime="2024-01-11T13:39:34+08:00">2024-01-11</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="文章字數">
@@ -261,54 +315,56 @@
 <span id="more"></span>
 
 <h2 id="註冊網域"><a href="#註冊網域" class="headerlink" title="註冊網域"></a><strong>註冊網域</strong></h2><p>首先到Route53</p>
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled1.png" class="" title="Untitled 1">
+
 
 
 <p>到Route53儀表板，在<strong>網域註冊</strong>的地方點<strong>網域</strong></p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled2.png" class="" title="Untitled 2">
 
 <p><strong>[註冊網域]</strong></p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled3.png" class="">
 
 <p>輸入自己想要取的網域名，如果完全符合會出現<strong>完全相符</strong>的圖示</p>
 <p>如果不符合的話，AWS也會推薦一些相近的網域名稱供使用者挑選</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled4.png" class="">
 
 <p>價格也是明碼標示</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled5.png" class="">
 
 <p>這邊看有沒有自動續約的需求，如果有需要可以勾起來</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled6.png" class="">
 
 <p>輸入聯絡人資訊</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled7.png" class="">
 
 <p>稍微讓AWS處理一下之後，就註冊完成囉</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled8.png" class="">
 
 <p>去查看信件，這邊也有提示我們要做進一步的動作，也就是和我們的網站作託管，那我們就繼續吧~</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled9.png" class="">
 
 <h2 id="設定-DNS-記錄"><a href="#設定-DNS-記錄" class="headerlink" title="設定 DNS 記錄"></a><strong>設定 DNS 記錄</strong></h2><p>網域註冊完成後，回到Route53儀表板，這次我們要點的是DNS管理的「託管區域」</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled10.png" class="">
 
 <p>點選我們租用的網域</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled11.png" class="">
 
 <p>點選「建立紀錄」</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled12.png" class="">
 
 <p>這時候回到EC2租用的主機，複製公開的IP名稱</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled13.png" class="">
 
 <p><strong>紀錄名稱</strong>：看網址要不要打前綴詞，像是hello.ray-code.com等等…</p>
 <p><strong>紀錄類型</strong>：這邊選擇「A 紀錄」這個記錄將你的網域名稱指向你的 IP 地址。這樣，當有人訪問你的網域時，DNS 將將其解析為你的 IP 地址，使流量能夠正確到達你的伺服器。</p>
 <p><strong>值</strong>：填入IP</p>
 <p>最後點選建立紀錄</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled14.png" class="">
 
 <p>設定完成!!</p>
 <p>這時候就可以打上這個網域，看有沒有成功轉跳到你要的網站囉~</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled15.png" class="">
 
 <blockquote>
 <p>參考網址：</p>
@@ -323,117 +379,117 @@
 <p>Associate a certificate from AWS Certificate Manager. The certificate must be in the US East (N. Virginia) Region (us-east-1).</p>
 </blockquote>
 <p>點選[請求憑證]</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled16.png" class="">
 
 <p>請求公有憑證→下一步</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled17.png" class="">
 
 <p>輸入自己的網域名稱，也可以新增多個網域名稱，也可以輸入萬用字元，例如：*.ray-code.com</p>
 <p>這邊我是單純新增ray-code.com</p>
 <p><font color='red'>注意：憑證的網域內容在後面CloudFront設定CName的時候必須可以對應到，才可以設定，不然沒辦法設定！</font></p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled18.png" class="">
 
 <p>驗證方法選擇電子郵件驗證</p>
 <p>金鑰演算法我選擇的是RSA2048</p>
 <p>然後就點選下一步</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled19.png" class="">
 
 <p>這邊就可以看到目前的狀態是等待驗證，也就是我們要等待AWS寄來的信件做驗證</p>
 <p><img src="/AWS%20%E7%B6%B2%E5%9F%9F%E3%80%81https%E8%A8%AD%E5%AE%9A%200e077a9ac5334d748803da517045ef27/Untitled%2020.png" alt="Untitled"></p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled21.png" class="">
 
 <p>信件內容長這樣，點選Approve</p>
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled22.png" class="">
 
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled23.png" class="">
 
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled24.png" class="">
 
-
-
-
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled25.png" class="">
 
 <p>通過之後就會看到狀態已經改變</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled26.png" class="">
 
 <h2 id="設定CloudFront"><a href="#設定CloudFront" class="headerlink" title="設定CloudFront"></a>設定CloudFront</h2><p>申請完成之後，要思考的是怎麼把這個憑證套用上我們的EC2網站，原本想把這個憑證匯出，結果發現好像不能這樣搞XD</p>
 <p>看了一下AWS的說明，<a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/acm/latest/userguide/acm-services.html">ACM可以跟哪些服務搭配</a> ，發現適合我的選項應該是CloudFront，也就是CDN服務</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled27.png" class="">
 
 <p>說明一下為什麼會認為CloudFront是比較適合自己的選項，其實講白了就是因為<strong>錢</strong></p>
 <p>ELB的話只要使用就要算錢，不管使用量高低，只要開始使用就是7*24的計費</p>
 <p>CloudFront則是有使用流量才會計費，而且每個月都還有免費的流量可以使用</p>
 <p>依我網站的使用量，使用CloudFront的服務是比較經濟實惠的</p>
 <p>而網路上很多的教學都是ELB+CloudFront兩套全吃，這跟我的情境又更不相符了XD</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled28.png" class="">
 
 <p>點擊建立CloudFront之後，會看到沒有EC2可以選，預設的來源只有S3、ELB等等等…但就是沒有EC2</p>
 <p>但是根據<a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/zh_tw/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html">CloudFront的說明</a>，應該是有支援的才對 </p>
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled29.png" class="">
 
-
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled30.png" class="">
 
 <p>查了一圈才發現，其實只要將EC2的<strong>對外DNS</strong>打上去就可以了</p>
 <p><strong>通訊協定</strong>的部分選擇<strong>僅限http</strong></p>
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled31.png" class="">
 
-
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled32.png" class="" title="Untitled">
 
 <p><strong>檢視器</strong>的部分，選擇<strong>redirect HTTP to HTTPS</strong></p>
 <p><strong>Method</strong>我這邊是全開，不過其實不開也OK XD</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled33.png" class="">
 
 <p><strong>快取</strong>的部分，根據<a target="_blank" rel="noopener" href="https://medium.com/@diyar.parwana/step-by-step-guide-to-create-a-cloudfront-distribution-for-ec2-cbf5b7862c41">這篇文章</a>的說明，還有<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=0ZZY7GSY6uw">這個影片</a>，選了以下的選項(僅供參考)</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled34.png" class="">
 
 <p>CName的部分，打上你原本網站的Domain</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled35.png" class="">
 
 <p>憑證的部分，選擇剛剛在us-east-1申請的憑證</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled36.png" class="">
 
 <p>都設定好了，就可以送出囉！</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled37.png" class="">
 
 <p>建立成功，這時候確認<strong>狀態</strong>及<strong>上次修改</strong>是不是已改用及顯示時間，這樣才確定它部署成功哦！</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled38.png" class="">
 
 <h2 id="Route53設定"><a href="#Route53設定" class="headerlink" title="Route53設定"></a>Route53設定</h2><p>完成了CloudFront之後，這時候https(憑證) 跟CDN(CloudFront)都設定完成了，但這時候如果我們將domain輸入到網址列，會發現依舊還是http不是https，所以我們要來更改Route設定，把剛剛的CDN設定上去，才可以做正確的連結</p>
 <p>回到Route53，原本我們是在紀錄名稱打的是EC2的IP，這時候我們要把他換成剛剛設定CloudFront的設定</p>
 <p>點選編輯紀錄集</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled39.png" class="">
 
 <p>把別名勾起來→選擇CloudFront分配的別名</p>
 <p>這時候如果設定都正確，下面應該可以挑到剛剛設定的CloudFront</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled40.png" class="">
 
 <p>儲存之後，就可以來連線看看囉！</p>
 <h2 id="錯誤排除"><a href="#錯誤排除" class="headerlink" title="錯誤排除"></a>錯誤排除</h2><p>明明Route53、ACM、CloudFront都設定好了，但是網站卻一直連不上去，這個部分我花了快一天的時間，查了無數的文件，後來才找到解決的方法，所以記錄下來，希望可以幫到未來的自己也幫到大家</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled41.png" class="">
 
 <p>首先，針對504的錯誤，確實Route53、ACM、CloudFront的設定都是正確的，那問題出在哪呢？</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled42.png" class="" title="Untitled">
 
 <p>原因是出在防火牆，因為這個網站原先我只是內部測試，所以我針對公司內部的網路開啟了80及443port，但由於我們現在使用了CDN服務，所以網路的來源就不再只是公司內部的連線，這時候如果你的安全性設定沒有變更，那等於你用防火牆把CDN擋在外頭了，當然就沒有辦法正常連線</p>
 <p>所以我們要做的事情很簡單，就是到EC的安全性群組，將80<del>及443</del>port打開連線即可</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled43.png" class="">
 
 <p>第二個技術點出現了，經過公司前輩的指點，得知其實只要開啟80Port就可以了，443是不需要開啟的</p>
 <p>因為在ACM上面的憑證是沒有辦法匯出的，所以我們在IIS上面，根本沒辦法Binding https，我們能夠開啟的就只有80port，而CDN實際也是跟80port連線。</p>
 <p><del>這邊使用到的技術是Flexible SSL</del>，瀏覽器與Cloudfront之間有一層https加密，但Cloudfront與EC2之間還是使用http連線。 </p>
 <p>詢問了一下ChatGTP老師，這邊應該是使用AWS的SNI技術，想多了解的可以再去google一下</p>
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled44.png" class="">
 
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled45.png" class="">
 
-
-
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled46.png" class="">
 
 <p>於是我們就實際來測試一下，拿掉443port是不是還是可以正常連線</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled47.png" class="">
 
 <p>經過求證，連線依然正常</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled48.png" class="">
 
 <p>最後我們就展示一下，設定好的網站，是可以使用SSL連線的結果~</p>
-
+<img src="/AWS-EC2%E8%88%87CloudFront%EF%BC%9A%E7%94%B3%E8%AB%8B%E7%B6%B2%E5%9F%9F%E5%8F%8ASSL%E8%A8%AD%E5%AE%9A/Untitled49.png" class="">
 
 <blockquote>
 <p>參考資料：</p>
@@ -582,7 +638,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
